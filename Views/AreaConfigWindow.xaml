@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="すたとばし範囲設定"
         AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" Topmost="True"
-        MinWidth="300" MinHeight="300"
+        MinWidth="{Binding WidthMin, Mode=OneTime}" MinHeight="{Binding HeightMin, Mode=OneTime}"
         Background="#80ffffff"
         MouseLeftButtonDown="window_MouseLeftButtonDown">
     <Window.Resources>

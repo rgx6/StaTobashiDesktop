@@ -10,6 +10,7 @@ namespace StaTobashi.Models
     [Serializable]
     public class Config
     {
+        public static readonly double AreaHeightMin = 300;
         public static readonly int IntervalRangeMin = 1;
         public static readonly int IntervalRangeMax = 300;
         public static readonly int IntervalStep = 1;

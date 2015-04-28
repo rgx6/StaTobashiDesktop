@@ -48,6 +48,11 @@ namespace StaTobashi.ViewModels
             }
         }
 
+        public double WidthMin
+        {
+            get { return Config.AreaWidthMin; }
+        }
+
         private double _height;
         public double Height
         {
@@ -60,6 +65,11 @@ namespace StaTobashi.ViewModels
                     NotifyPropertyChanged("Height");
                 }
             }
+        }
+
+        public double HeightMin
+        {
+            get { return Config.AreaHeightMin; }
         }
 
         public bool Topmost { get; set; }
