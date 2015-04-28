@@ -128,6 +128,9 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\ApplicationIcon.ico" />
+    <Content Include="readme.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\sta001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
