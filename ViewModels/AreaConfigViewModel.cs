@@ -50,7 +50,7 @@ namespace StaTobashi.ViewModels
 
         public double WidthMin
         {
-            get { return Config.AreaWidthMin; }
+            get { return Config.WidthMin; }
         }
 
         private double _height;
@@ -69,7 +69,7 @@ namespace StaTobashi.ViewModels
 
         public double HeightMin
         {
-            get { return Config.AreaHeightMin; }
+            get { return Config.HeightMin; }
         }
 
         public bool Topmost { get; set; }

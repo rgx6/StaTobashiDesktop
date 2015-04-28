@@ -10,7 +10,9 @@ namespace StaTobashi.Models
     [Serializable]
     public class Config
     {
-        public static readonly double AreaHeightMin = 300;
+        public static readonly double WidthMin = 300;
+        public static readonly double HeightMin = 300;
+
         public static readonly int IntervalRangeMin = 1;
         public static readonly int IntervalRangeMax = 300;
         public static readonly int IntervalStep = 1;
@@ -20,6 +22,16 @@ namespace StaTobashi.Models
         public static readonly double ScaleRangeMin = 0.1;
         public static readonly double ScaleRangeMax = 3.0;
         public static readonly double ScaleStep = 0.1;
+
+        private static readonly double InitialLeft = 0;
+        private static readonly double InitialTop = 0;
+        private static readonly double InitialWidth = 300;
+        private static readonly double InitialHeight = 300;
+        private static readonly bool InitialTopmost = true;
+        private static readonly int InitialInterval = 5;
+        private static readonly int InitialDurationMin = 500;
+        private static readonly int InitialDurationMax = 3000;
+        private static readonly double InitialScale = 0.5;
 
         private static readonly string filePath = Path.Combine(
             Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
@@ -51,6 +63,7 @@ namespace StaTobashi.Models
                 using (var sr = new StreamReader(filePath, new UTF8Encoding(false)))
                 {
                     Current = (Config)serializer.Deserialize(sr);
+                    Current.Check();
                 }
             }
             catch (Exception e)
@@ -64,15 +77,15 @@ namespace StaTobashi.Models
         {
             return new Config
             {
-                Left = 50,
-                Top = 50,
-                Width = 800,
-                Height = 800,
-                Topmost = true,
-                LaunchIntervalSeconds = 15,
-                LaunchDurationMillisecondsMin = 500,
-                LaunchDurationMillisecondsMax = 3000,
-                Scale = 0.5,
+                Left = InitialLeft,
+                Top = InitialTop,
+                Width = InitialWidth,
+                Height = InitialHeight,
+                Topmost = InitialTopmost,
+                LaunchIntervalSeconds = InitialInterval,
+                LaunchDurationMillisecondsMin = InitialDurationMin,
+                LaunchDurationMillisecondsMax = InitialDurationMax,
+                Scale = InitialScale,
             };
         }
 
@@ -90,6 +103,45 @@ namespace StaTobashi.Models
                 {
                     Debug.WriteLine(e);
                 }
+            }
+        }
+
+        private void Check()
+        {
+            if (Current.Width < WidthMin)
+            {
+                Current.Width = InitialWidth;
+            }
+
+            if (Current.Height < HeightMin)
+            {
+                Current.Height = InitialHeight;
+            }
+
+            if (Current.LaunchIntervalSeconds < IntervalRangeMin || IntervalRangeMax < Current.LaunchIntervalSeconds)
+            {
+                Current.LaunchIntervalSeconds = InitialInterval;
+            }
+
+            if (Current.LaunchDurationMillisecondsMin < DurationRangeMin || DurationRangeMax < Current.LaunchDurationMillisecondsMin)
+            {
+                Current.LaunchDurationMillisecondsMin = InitialDurationMin;
+            }
+
+            if (Current.LaunchDurationMillisecondsMax < DurationRangeMin || DurationRangeMax < Current.LaunchDurationMillisecondsMax)
+            {
+                Current.LaunchDurationMillisecondsMax = InitialDurationMax;
+            }
+
+            if (Current.LaunchDurationMillisecondsMax < Current.LaunchDurationMillisecondsMin)
+            {
+                Current.LaunchDurationMillisecondsMin = InitialDurationMin;
+                Current.LaunchDurationMillisecondsMax = InitialDurationMax;
+            }
+
+            if (Current.Scale < ScaleRangeMin || ScaleRangeMax < Current.Scale)
+            {
+                Current.Scale = InitialScale;
             }
         }
     }
