@@ -11,11 +11,14 @@ namespace StaTobashi.Models
     public class Config
     {
         public static readonly int IntervalRangeMin = 1;
-        public static readonly int IntervalRangeMax = 3600;
-        public static readonly int DurationRangeMin = 50;
+        public static readonly int IntervalRangeMax = 300;
+        public static readonly int IntervalStep = 1;
+        public static readonly int DurationRangeMin = 100;
         public static readonly int DurationRangeMax = 10000;
+        public static readonly int DurationStep = 100;
         public static readonly double ScaleRangeMin = 0.1;
-        public static readonly double ScaleRangeMax = 10.0;
+        public static readonly double ScaleRangeMax = 3.0;
+        public static readonly double ScaleStep = 0.1;
 
         private static readonly string filePath = Path.Combine(
             Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
@@ -76,7 +79,7 @@ namespace StaTobashi.Models
         {
             var serializer = new XmlSerializer(typeof(Config));
 
-            using(var sw = new StreamWriter(filePath, false, new UTF8Encoding(false)))
+            using (var sw = new StreamWriter(filePath, false, new UTF8Encoding(false)))
             {
                 try
                 {

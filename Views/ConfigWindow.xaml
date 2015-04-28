@@ -7,62 +7,53 @@
         Width="300" Height="350"
         Background="Gray">
     <Window.Resources>
-        <ControlTemplate x:Key="ErrorTemplate">
-            <DockPanel LastChildFill="True">
-                <Border BorderBrush="Red" BorderThickness="1">
-                    <AdornedElementPlaceholder />
-                </Border>
-            </DockPanel>
-        </ControlTemplate>
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="10" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-                                            Path=(Validation.Errors)[0].ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
+        <Style TargetType="Slider">
+            <Setter Property="Margin" Value="0, 0, 0, 10" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Margin" Value="5" />
         </Style>
     </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Margin" Value="10" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                </Style>
-            </Grid.Resources>
-            <TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Right">とばす間隔 [秒]</TextBlock>
-            <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding LaunchIntervalSeconds, ValidatesOnDataErrors=True}" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">横断にかかる時間 [ミリ秒]</TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Right">最速</TextBlock>
-            <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding LaunchDurationMillisecondsMin, ValidatesOnDataErrors=True}" />
-            <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Right">最遅</TextBlock>
-            <TextBox   Grid.Row="3" Grid.Column="1" Text="{Binding LaunchDurationMillisecondsMax, ValidatesOnDataErrors=True}" />
-            <TextBlock Grid.Row="4" Grid.Column="0" TextAlignment="Right">画像表示倍率</TextBlock>
-            <TextBox   Grid.Row="4" Grid.Column="1" Text="{Binding Scale, ValidatesOnDataErrors=True}" />
-        </Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="270">
+        <TextBlock >横断にかかる時間 [ミリ秒]</TextBlock>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">最速</TextBlock>
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationMillisecondsMin}" />
+        </DockPanel>
+        <Slider Value="{Binding LaunchDurationMillisecondsMin}"
+                Minimum="{Binding DurationRangeMin, Mode=OneTime}" Maximum="{Binding DurationRangeMax, Mode=OneTime}" 
+                TickFrequency="{Binding DurationStep, Mode=OneTime}"
+                IsSnapToTickEnabled="True" />
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">最遅</TextBlock>
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationMillisecondsMax}" />
+        </DockPanel>
+        <Slider Value="{Binding LaunchDurationMillisecondsMax}"
+                Minimum="{Binding DurationRangeMin, Mode=OneTime}" Maximum="{Binding DurationRangeMax, Mode=OneTime}" 
+                TickFrequency="{Binding DurationStep, Mode=OneTime}"
+                IsSnapToTickEnabled="True" />
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">とばす間隔 [秒]</TextBlock>
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchIntervalSeconds}" />
+        </DockPanel>
+        <Slider Value="{Binding LaunchIntervalSeconds}"
+                Minimum="{Binding IntervalRangeMin, Mode=OneTime}" Maximum="{Binding IntervalRangeMax, Mode=OneTime}" 
+                TickFrequency="{Binding IntervalStep, Mode=OneTime}"
+                IsSnapToTickEnabled="True" />
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">画像表示倍率</TextBlock>
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding Scale}" />
+        </DockPanel>
+        <Slider Value="{Binding Scale}"
+                Minimum="{Binding ScaleRangeMin, Mode=OneTime}" Maximum="{Binding ScaleRangeMax, Mode=OneTime}" 
+                TickFrequency="{Binding ScaleStep, Mode=OneTime}"
+                IsSnapToTickEnabled="True" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Width" Value="80" />
-                    <Setter Property="Height" Value="40" />
-                    <Setter Property="Margin" Value="5" />
-                </Style>
-            </StackPanel.Resources>
             <Button Name="cancel" Click="cancel_Click">キャンセル</Button>
             <Button Name="ok"     Click="ok_Click">OK</Button>
         </StackPanel>

@@ -4,7 +4,7 @@ using StaTobashi.Models;
 
 namespace StaTobashi.ViewModels
 {
-    public class ConfigViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public class ConfigViewModel : INotifyPropertyChanged
     {
         private int _launchIntervalSeconds;
         public int LaunchIntervalSeconds
@@ -20,6 +20,21 @@ namespace StaTobashi.ViewModels
             }
         }
 
+        public int IntervalRangeMin
+        {
+            get { return Config.IntervalRangeMin; }
+        }
+
+        public int IntervalRangeMax
+        {
+            get { return Config.IntervalRangeMax; }
+        }
+
+        public int IntervalStep
+        {
+            get { return Config.IntervalStep; }
+        }
+
         private int _launchDurationMillisecondsMin;
         public int LaunchDurationMillisecondsMin
         {
@@ -31,6 +46,11 @@ namespace StaTobashi.ViewModels
                     _launchDurationMillisecondsMin = value;
                     NotifyPropertyChanged("LaunchDurationMillisecondsMin");
                     NotifyPropertyChanged("LaunchDurationMillisecondsMax");
+
+                    if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
+                    {
+                        this.LaunchDurationMillisecondsMax = this.LaunchDurationMillisecondsMin;
+                    }
                 }
             }
         }
@@ -46,8 +66,28 @@ namespace StaTobashi.ViewModels
                     _launchDurationMillisecondsMax = value;
                     NotifyPropertyChanged("LaunchDurationMillisecondsMin");
                     NotifyPropertyChanged("LaunchDurationMillisecondsMax");
+
+                    if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
+                    {
+                        this.LaunchDurationMillisecondsMin = this.LaunchDurationMillisecondsMax;
+                    }
                 }
             }
+        }
+
+        public int DurationRangeMin
+        {
+            get { return Config.DurationRangeMin; }
+        }
+
+        public int DurationRangeMax
+        {
+            get { return Config.DurationRangeMax; }
+        }
+
+        public int DurationStep
+        {
+            get { return Config.DurationStep; }
         }
 
         private double _scale;
@@ -62,6 +102,21 @@ namespace StaTobashi.ViewModels
                     NotifyPropertyChanged("Scale");
                 }
             }
+        }
+
+        public double ScaleRangeMin
+        {
+            get { return Config.ScaleRangeMin; }
+        }
+
+        public double ScaleRangeMax
+        {
+            get { return Config.ScaleRangeMax; }
+        }
+
+        public double ScaleStep
+        {
+            get { return Config.ScaleStep; }
         }
 
         public ConfigViewModel()
@@ -79,59 +134,6 @@ namespace StaTobashi.ViewModels
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
-
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                switch (columnName)
-                {
-                    case "LaunchIntervalSeconds":
-                        if (this.LaunchIntervalSeconds < Config.IntervalRangeMin ||
-                            Config.IntervalRangeMax < this.LaunchIntervalSeconds)
-                        {
-                            return Config.IntervalRangeMin + " から " + Config.IntervalRangeMax + " までの整数を入力してください";
-                        }
-                        break;
-                    case "LaunchDurationMillisecondsMin":
-                        if (this.LaunchDurationMillisecondsMin < Config.DurationRangeMin ||
-                            Config.DurationRangeMax < this.LaunchDurationMillisecondsMin)
-                        {
-                            return Config.DurationRangeMin + " から " + Config.DurationRangeMax + " までの整数を入力してください";
-                        }
-                        else if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
-                        {
-                            return "最速 ≦ 最遅 にしてください";
-                        }
-                        break;
-                    case "LaunchDurationMillisecondsMax":
-                        if (this.LaunchDurationMillisecondsMax < Config.DurationRangeMin ||
-                            Config.DurationRangeMax < this.LaunchDurationMillisecondsMax)
-                        {
-                            return Config.DurationRangeMin + " から " + Config.DurationRangeMax + " までの整数を入力してください";
-                        }
-                        else if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
-                        {
-                            return "最速 ≦ 最遅 にしてください";
-                        }
-                        break;
-                    case "Scale":
-                        if (this.Scale < Config.ScaleRangeMin ||
-                            Config.ScaleRangeMax < this.Scale)
-                        {
-                            return Config.ScaleRangeMin + " から " + Config.ScaleRangeMax + " までの数値を入力してください";
-                        }
-                        break;
-                }
-
-                return null;
             }
         }
     }
