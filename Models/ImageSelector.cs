@@ -20,11 +20,11 @@ namespace StaTobashi.Models
         public ImageSelector()
         {
             files = Directory.GetFiles(directoryPath)
-                .Where(x => x.Contains(".png") ||
-                            x.Contains(".gif") ||
-                            x.Contains(".jpg") ||
-                            x.Contains(".jpeg") ||
-                            x.Contains(".bmp")).ToList<string>();
+                .Where(x => x.ToLower().Contains(".png") ||
+                            x.ToLower().Contains(".gif") ||
+                            x.ToLower().Contains(".jpg") ||
+                            x.ToLower().Contains(".jpeg") ||
+                            x.ToLower().Contains(".bmp")).ToList<string>();
 
             if (files.Count == 0) throw new FileNotFoundException();
 
