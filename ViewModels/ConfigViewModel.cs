@@ -35,57 +35,57 @@ namespace StaTobashi.ViewModels
             get { return Config.IntervalStep; }
         }
 
-        private int _launchDurationMillisecondsMin;
-        public int LaunchDurationMillisecondsMin
+        private double _launchDurationSecondsMin;
+        public double LaunchDurationSecondsMin
         {
-            get { return _launchDurationMillisecondsMin; }
+            get { return _launchDurationSecondsMin; }
             set
             {
-                if (_launchDurationMillisecondsMin != value)
+                if (_launchDurationSecondsMin != value)
                 {
-                    _launchDurationMillisecondsMin = value;
-                    NotifyPropertyChanged("LaunchDurationMillisecondsMin");
-                    NotifyPropertyChanged("LaunchDurationMillisecondsMax");
+                    _launchDurationSecondsMin = value;
+                    NotifyPropertyChanged("LaunchDurationSecondsMin");
+                    NotifyPropertyChanged("LaunchDurationSecondsMax");
 
-                    if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
+                    if (this.LaunchDurationSecondsMax < this.LaunchDurationSecondsMin)
                     {
-                        this.LaunchDurationMillisecondsMax = this.LaunchDurationMillisecondsMin;
+                        this.LaunchDurationSecondsMax = this.LaunchDurationSecondsMin;
                     }
                 }
             }
         }
 
-        private int _launchDurationMillisecondsMax;
-        public int LaunchDurationMillisecondsMax
+        private double _launchDurationSecondsMax;
+        public double LaunchDurationSecondsMax
         {
-            get { return _launchDurationMillisecondsMax; }
+            get { return _launchDurationSecondsMax; }
             set
             {
-                if (_launchDurationMillisecondsMax != value)
+                if (_launchDurationSecondsMax != value)
                 {
-                    _launchDurationMillisecondsMax = value;
-                    NotifyPropertyChanged("LaunchDurationMillisecondsMin");
-                    NotifyPropertyChanged("LaunchDurationMillisecondsMax");
+                    _launchDurationSecondsMax = value;
+                    NotifyPropertyChanged("LaunchDurationSecondsMin");
+                    NotifyPropertyChanged("LaunchDurationSecondsMax");
 
-                    if (this.LaunchDurationMillisecondsMax < this.LaunchDurationMillisecondsMin)
+                    if (this.LaunchDurationSecondsMax < this.LaunchDurationSecondsMin)
                     {
-                        this.LaunchDurationMillisecondsMin = this.LaunchDurationMillisecondsMax;
+                        this.LaunchDurationSecondsMin = this.LaunchDurationSecondsMax;
                     }
                 }
             }
         }
 
-        public int DurationRangeMin
+        public double DurationRangeMin
         {
             get { return Config.DurationRangeMin; }
         }
 
-        public int DurationRangeMax
+        public double DurationRangeMax
         {
             get { return Config.DurationRangeMax; }
         }
 
-        public int DurationStep
+        public double DurationStep
         {
             get { return Config.DurationStep; }
         }
@@ -122,8 +122,8 @@ namespace StaTobashi.ViewModels
         public ConfigViewModel()
         {
             this.LaunchIntervalSeconds = Config.Current.LaunchIntervalSeconds;
-            this.LaunchDurationMillisecondsMin = Config.Current.LaunchDurationMillisecondsMin;
-            this.LaunchDurationMillisecondsMax = Config.Current.LaunchDurationMillisecondsMax;
+            this.LaunchDurationSecondsMin = Config.Current.LaunchDurationSecondsMin;
+            this.LaunchDurationSecondsMax = Config.Current.LaunchDurationSecondsMax;
             this.Scale = Config.Current.Scale;
         }
 

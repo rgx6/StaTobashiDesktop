@@ -95,12 +95,12 @@ namespace StaTobashi.Views
             var staDuration = GetRandomDuration();
             Canvas.SetLeft(starchoo, staLeft);
             Canvas.SetTop(starchoo, staTop);
-            Canvas.SetZIndex(starchoo, -staDuration);
+            Canvas.SetZIndex(starchoo, -(int)staDuration);
 
             var anime = new DoubleAnimation();
             anime.From = staLeft;
             anime.To = -staWidth;
-            anime.Duration = new Duration(TimeSpan.FromMilliseconds(staDuration));
+            anime.Duration = new Duration(TimeSpan.FromSeconds(staDuration));
 
             var sb = new Storyboard();
             sb.Children.Add(anime);
@@ -138,9 +138,12 @@ namespace StaTobashi.Views
             return this.Height <= staHeight ? 0 : random.Next(0, (int)this.Height - (int)staHeight);
         }
 
-        private int GetRandomDuration()
+        private double GetRandomDuration()
         {
-            return random.Next(Config.Current.LaunchDurationMillisecondsMin, Config.Current.LaunchDurationMillisecondsMax);
+            var rBase = Config.Current.LaunchDurationSecondsMin;
+            var rRange = Config.Current.LaunchDurationSecondsMax - Config.Current.LaunchDurationSecondsMin;
+
+            return rBase + random.NextDouble() * rRange;
         }
 
         private static IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

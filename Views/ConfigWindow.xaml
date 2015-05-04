@@ -17,28 +17,28 @@
         </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="270">
-        <TextBlock >横断にかかる時間 [ミリ秒]</TextBlock>
+        <TextBlock >横断にかかる時間 [秒]</TextBlock>
         <DockPanel>
             <TextBlock DockPanel.Dock="Left">最速</TextBlock>
-            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationMillisecondsMin}" />
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationSecondsMin, StringFormat=f1}" />
         </DockPanel>
-        <Slider Value="{Binding LaunchDurationMillisecondsMin}"
+        <Slider Value="{Binding LaunchDurationSecondsMin}"
                 Minimum="{Binding DurationRangeMin, Mode=OneTime}" Maximum="{Binding DurationRangeMax, Mode=OneTime}" 
                 TickFrequency="{Binding DurationStep, Mode=OneTime}"
                 IsSnapToTickEnabled="True" />
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Left">最遅</TextBlock>
-            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationMillisecondsMax}" />
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchDurationSecondsMax, StringFormat=f1}" />
         </DockPanel>
-        <Slider Value="{Binding LaunchDurationMillisecondsMax}"
+        <Slider Value="{Binding LaunchDurationSecondsMax}"
                 Minimum="{Binding DurationRangeMin, Mode=OneTime}" Maximum="{Binding DurationRangeMax, Mode=OneTime}" 
                 TickFrequency="{Binding DurationStep, Mode=OneTime}"
                 IsSnapToTickEnabled="True" />
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Left">とばす間隔 [秒]</TextBlock>
-            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchIntervalSeconds}" />
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding LaunchIntervalSeconds, StringFormat=f1}" />
         </DockPanel>
         <Slider Value="{Binding LaunchIntervalSeconds}"
                 Minimum="{Binding IntervalRangeMin, Mode=OneTime}" Maximum="{Binding IntervalRangeMax, Mode=OneTime}" 
@@ -47,7 +47,7 @@
 
         <DockPanel>
             <TextBlock DockPanel.Dock="Left">画像表示倍率</TextBlock>
-            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding Scale}" />
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Text="{Binding Scale, StringFormat=f1}" />
         </DockPanel>
         <Slider Value="{Binding Scale}"
                 Minimum="{Binding ScaleRangeMin, Mode=OneTime}" Maximum="{Binding ScaleRangeMax, Mode=OneTime}" 

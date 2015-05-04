@@ -16,9 +16,9 @@ namespace StaTobashi.Models
         public static readonly double IntervalRangeMin = 0.1;
         public static readonly double IntervalRangeMax = 300;
         public static readonly double IntervalStep = 0.1;
-        public static readonly int DurationRangeMin = 100;
-        public static readonly int DurationRangeMax = 10000;
-        public static readonly int DurationStep = 100;
+        public static readonly double DurationRangeMin = 0.1;
+        public static readonly double DurationRangeMax = 10.0;
+        public static readonly double DurationStep = 0.1;
         public static readonly double ScaleRangeMin = 0.1;
         public static readonly double ScaleRangeMax = 3.0;
         public static readonly double ScaleStep = 0.1;
@@ -28,9 +28,9 @@ namespace StaTobashi.Models
         private static readonly double InitialWidth = 300;
         private static readonly double InitialHeight = 300;
         private static readonly bool InitialTopmost = true;
-        private static readonly int InitialInterval = 5;
-        private static readonly int InitialDurationMin = 500;
-        private static readonly int InitialDurationMax = 3000;
+        private static readonly double InitialInterval = 5;
+        private static readonly double InitialDurationMin = 0.5;
+        private static readonly double InitialDurationMax = 3.0;
         private static readonly double InitialScale = 0.5;
 
         private static readonly string filePath = Path.Combine(
@@ -45,8 +45,8 @@ namespace StaTobashi.Models
         public double Height { get; set; }
         public bool Topmost { get; set; }
         public double LaunchIntervalSeconds { get; set; }
-        public int LaunchDurationMillisecondsMin { get; set; }
-        public int LaunchDurationMillisecondsMax { get; set; }
+        public double LaunchDurationSecondsMin { get; set; }
+        public double LaunchDurationSecondsMax { get; set; }
         public double Scale { get; set; }
 
         public static void Load()
@@ -83,8 +83,8 @@ namespace StaTobashi.Models
                 Height = InitialHeight,
                 Topmost = InitialTopmost,
                 LaunchIntervalSeconds = InitialInterval,
-                LaunchDurationMillisecondsMin = InitialDurationMin,
-                LaunchDurationMillisecondsMax = InitialDurationMax,
+                LaunchDurationSecondsMin = InitialDurationMin,
+                LaunchDurationSecondsMax = InitialDurationMax,
                 Scale = InitialScale,
             };
         }
@@ -123,20 +123,20 @@ namespace StaTobashi.Models
                 Current.LaunchIntervalSeconds = InitialInterval;
             }
 
-            if (Current.LaunchDurationMillisecondsMin < DurationRangeMin || DurationRangeMax < Current.LaunchDurationMillisecondsMin)
+            if (Current.LaunchDurationSecondsMin < DurationRangeMin || DurationRangeMax < Current.LaunchDurationSecondsMin)
             {
-                Current.LaunchDurationMillisecondsMin = InitialDurationMin;
+                Current.LaunchDurationSecondsMin = InitialDurationMin;
             }
 
-            if (Current.LaunchDurationMillisecondsMax < DurationRangeMin || DurationRangeMax < Current.LaunchDurationMillisecondsMax)
+            if (Current.LaunchDurationSecondsMax < DurationRangeMin || DurationRangeMax < Current.LaunchDurationSecondsMax)
             {
-                Current.LaunchDurationMillisecondsMax = InitialDurationMax;
+                Current.LaunchDurationSecondsMax = InitialDurationMax;
             }
 
-            if (Current.LaunchDurationMillisecondsMax < Current.LaunchDurationMillisecondsMin)
+            if (Current.LaunchDurationSecondsMax < Current.LaunchDurationSecondsMin)
             {
-                Current.LaunchDurationMillisecondsMin = InitialDurationMin;
-                Current.LaunchDurationMillisecondsMax = InitialDurationMax;
+                Current.LaunchDurationSecondsMin = InitialDurationMin;
+                Current.LaunchDurationSecondsMax = InitialDurationMax;
             }
 
             if (Current.Scale < ScaleRangeMin || ScaleRangeMax < Current.Scale)

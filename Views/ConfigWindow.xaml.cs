@@ -21,8 +21,8 @@ namespace StaTobashi.Views
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             Config.Current.LaunchIntervalSeconds = configViewModel.LaunchIntervalSeconds;
-            Config.Current.LaunchDurationMillisecondsMin = configViewModel.LaunchDurationMillisecondsMin;
-            Config.Current.LaunchDurationMillisecondsMax = configViewModel.LaunchDurationMillisecondsMax;
+            Config.Current.LaunchDurationSecondsMin = configViewModel.LaunchDurationSecondsMin;
+            Config.Current.LaunchDurationSecondsMax = configViewModel.LaunchDurationSecondsMax;
             Config.Current.Scale = configViewModel.Scale;
 
             this.Close();
