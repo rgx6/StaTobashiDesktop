@@ -57,7 +57,6 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -80,8 +79,6 @@
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Width}" />
                             <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Right">高さ</TextBlock>
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Height}" />
-                            <TextBlock Grid.Row="4" Grid.Column="0" TextAlignment="Right">最前面表示</TextBlock>
-                            <CheckBox  Grid.Row="4" Grid.Column="1" IsChecked="{Binding Topmost}" />
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <StackPanel.Resources>

@@ -75,7 +75,6 @@ namespace StaTobashi.Views
             Config.Current.Top = areaConfigViewModel.Top;
             Config.Current.Width = areaConfigViewModel.Width;
             Config.Current.Height = areaConfigViewModel.Height;
-            Config.Current.Topmost = areaConfigViewModel.Topmost;
 
             this.Close();
         }

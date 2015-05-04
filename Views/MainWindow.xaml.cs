@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
+using StaTobashi.Models;
 
 namespace StaTobashi.Views
 {
@@ -34,6 +35,13 @@ namespace StaTobashi.Views
             areaConfigItem.Text = "範囲設定";
             areaConfigItem.Click += new EventHandler(areaConfigItem_Click);
             menuStrip.Items.Add(areaConfigItem);
+
+            var topmostItem = new ToolStripMenuItem();
+            topmostItem.Text = "最前面表示";
+            topmostItem.Click += new EventHandler(topmostItem_Click);
+            topmostItem.CheckOnClick = true;
+            topmostItem.Checked = Config.Current.Topmost;
+            menuStrip.Items.Add(topmostItem);
 
             menuStrip.Items.Add(new ToolStripSeparator());
 
@@ -75,6 +83,18 @@ namespace StaTobashi.Views
             areaConfigWindow.ShowDialog();
 
             screenWindow.SetAreaConfig();
+
+            EnableTaskTrayMenu();
+        }
+
+        private void topmostItem_Click(object sender, EventArgs e)
+        {
+            DisableTaskTrayMenu();
+
+            Config.Current.Topmost = !Config.Current.Topmost;
+            ((ToolStripMenuItem)sender).Checked = Config.Current.Topmost;
+
+            screenWindow.SetTopmost();
 
             EnableTaskTrayMenu();
         }

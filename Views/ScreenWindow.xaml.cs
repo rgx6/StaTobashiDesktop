@@ -40,6 +40,7 @@ namespace StaTobashi.Views
             random = new Random();
 
             SetAreaConfig();
+            SetTopmost();
 
             dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);
             SetIntervalConfig();
@@ -64,6 +65,10 @@ namespace StaTobashi.Views
             this.Top = Config.Current.Top;
             this.Width = Config.Current.Width;
             this.Height = Config.Current.Height;
+        }
+
+        public void SetTopmost()
+        {
             this.Topmost = Config.Current.Topmost;
         }
 

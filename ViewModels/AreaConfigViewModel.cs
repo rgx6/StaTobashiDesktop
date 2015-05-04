@@ -72,15 +72,12 @@ namespace StaTobashi.ViewModels
             get { return Config.HeightMin; }
         }
 
-        public bool Topmost { get; set; }
-
         public AreaConfigViewModel()
         {
             this.Left = Config.Current.Left;
             this.Top = Config.Current.Top;
             this.Width = Config.Current.Width;
             this.Height = Config.Current.Height;
-            this.Topmost = Config.Current.Topmost;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
