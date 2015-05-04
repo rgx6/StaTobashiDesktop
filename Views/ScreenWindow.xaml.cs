@@ -88,7 +88,7 @@ namespace StaTobashi.Views
             this.RegisterName(starchoo.Name, starchoo);
 
             var staWidth = starchoo.Source.Width * Config.Current.Scale;
-            var staHeight = starchoo.Source.Height + Config.Current.Scale;
+            var staHeight = starchoo.Source.Height * Config.Current.Scale;
 
             var staLeft = this.Width;
             var staTop = GetRandomTop(staHeight);
