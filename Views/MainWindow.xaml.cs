@@ -24,6 +24,8 @@ namespace StaTobashi.Views
             notifyIcon.Icon = Properties.Resources.ApplicationIcon;
             notifyIcon.Visible = true;
 
+            notifyIcon.Click += new EventHandler(notifyIcon_Click);
+
             var menuStrip = new ContextMenuStrip();
 
             var configItem = new ToolStripMenuItem();
@@ -42,13 +44,6 @@ namespace StaTobashi.Views
             topmostItem.CheckOnClick = true;
             topmostItem.Checked = Config.Current.Topmost;
             menuStrip.Items.Add(topmostItem);
-
-            menuStrip.Items.Add(new ToolStripSeparator());
-
-            var staItem = new ToolStripMenuItem();
-            staItem.Text = "すた";
-            staItem.Click += new EventHandler(staItem_Click);
-            menuStrip.Items.Add(staItem);
 
             menuStrip.Items.Add(new ToolStripSeparator());
 
@@ -99,7 +94,7 @@ namespace StaTobashi.Views
             EnableTaskTrayMenu();
         }
 
-        private void staItem_Click(object sender, EventArgs e)
+        private void notifyIcon_Click(object sender, EventArgs e)
         {
             screenWindow.Launch();
         }
