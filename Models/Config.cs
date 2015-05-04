@@ -13,9 +13,9 @@ namespace StaTobashi.Models
         public static readonly double WidthMin = 300;
         public static readonly double HeightMin = 300;
 
-        public static readonly int IntervalRangeMin = 1;
-        public static readonly int IntervalRangeMax = 300;
-        public static readonly int IntervalStep = 1;
+        public static readonly double IntervalRangeMin = 0.1;
+        public static readonly double IntervalRangeMax = 300;
+        public static readonly double IntervalStep = 0.1;
         public static readonly int DurationRangeMin = 100;
         public static readonly int DurationRangeMax = 10000;
         public static readonly int DurationStep = 100;
@@ -44,7 +44,7 @@ namespace StaTobashi.Models
         public double Width { get; set; }
         public double Height { get; set; }
         public bool Topmost { get; set; }
-        public int LaunchIntervalSeconds { get; set; }
+        public double LaunchIntervalSeconds { get; set; }
         public int LaunchDurationMillisecondsMin { get; set; }
         public int LaunchDurationMillisecondsMax { get; set; }
         public double Scale { get; set; }

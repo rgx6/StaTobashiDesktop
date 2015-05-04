@@ -6,8 +6,8 @@ namespace StaTobashi.ViewModels
 {
     public class ConfigViewModel : INotifyPropertyChanged
     {
-        private int _launchIntervalSeconds;
-        public int LaunchIntervalSeconds
+        private double _launchIntervalSeconds;
+        public double LaunchIntervalSeconds
         {
             get { return _launchIntervalSeconds; }
             set
@@ -20,17 +20,17 @@ namespace StaTobashi.ViewModels
             }
         }
 
-        public int IntervalRangeMin
+        public double IntervalRangeMin
         {
             get { return Config.IntervalRangeMin; }
         }
 
-        public int IntervalRangeMax
+        public double IntervalRangeMax
         {
             get { return Config.IntervalRangeMax; }
         }
 
-        public int IntervalStep
+        public double IntervalStep
         {
             get { return Config.IntervalStep; }
         }

@@ -71,7 +71,7 @@ namespace StaTobashi.Views
         {
             if (dispatcherTimer == null) throw new InvalidOperationException();
 
-            dispatcherTimer.Interval = new TimeSpan(0, 0, Config.Current.LaunchIntervalSeconds);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)(Config.Current.LaunchIntervalSeconds * 1000));
         }
 
         public void Launch()
